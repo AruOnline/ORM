@@ -22,7 +22,7 @@ namespace ORM_DEV
         {
             _connectionString = connectionString;
             if (createTablesIfNotExist) CreateTables();
-            Task.Run(Cache.Run);
+            Cache.Initialize();
         }
 
         public static string GetTableName(this Type type)
@@ -55,7 +55,7 @@ namespace ORM_DEV
             }
         }
 
-        private static bool TableExists(this Type type)
+        internal static bool TableExists(this Type type)
         {
             using (Connection)
             {

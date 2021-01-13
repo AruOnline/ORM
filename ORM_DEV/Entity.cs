@@ -7,31 +7,9 @@ namespace ORM_DEV
 {
     public abstract class Entity<T> : EntityBase where T : Entity<T>
     {
-        /*public static T Find(Func<T, bool> filter = null)
+        public static T Get(Func<T, bool> filter = null)
         {
-            using (EntityManager.Connection)
-            {
-                if (filter != null)
-                    return EntityManager.Connection.Query<T>($"SELECT * FROM {typeof(T).GetTableName()}").Where(filter).FirstOrDefault();
-
-                return EntityManager.Connection.Query<T>($"SELECT * FROM {typeof(T).GetTableName()}").FirstOrDefault();
-            }
-        }
-        
-        public static IEnumerable<T> FindAll(Func<T, bool> filter = null)
-        {
-            using (EntityManager.Connection)
-            {
-                if (filter != null)
-                    return EntityManager.Connection.Query<T>($"SELECT * FROM {typeof(T).GetTableName()}").Where(filter);
-
-                return EntityManager.Connection.Query<T>($"SELECT * FROM {typeof(T).GetTableName()}");
-            }
-        }*/
-
-        public T Get(Func<T, bool> filter = null)
-        {
-            return Cache.Get<T>(filter);
+            return Cache.Get<T>(e => e.Id == 1);
         }
 
         public bool Delete()

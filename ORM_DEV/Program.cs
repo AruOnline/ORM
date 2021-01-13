@@ -6,11 +6,11 @@ namespace ORM_DEV
 {
     internal static class Program
     {
-        private const string ConnString = "Server=127.0.0.1;Database=game;Uid=game;Pwd=Ferrarie1!;";
+        private const string CONN_STRING = "Server=127.0.0.1;Database=game;Uid=game;Pwd=Ferrarie1!;";
         
         public static void Main(string[] args)
         {
-            EntityManager.Initialize(ConnString);
+            EntityManager.Initialize(CONN_STRING);
 
             /*foreach (User user in User.FindAll())
             {
@@ -21,6 +21,8 @@ namespace ORM_DEV
             User user2 = User.Find(e => e.Id == 3);
             Console.WriteLine(user2?.Delete());
             */
+
+            User.Get(u => u.Id == 1);
         }
     }
 }
