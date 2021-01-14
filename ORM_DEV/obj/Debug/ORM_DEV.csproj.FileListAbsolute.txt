@@ -68,3 +68,11 @@ C:\dev\AruOnline\ORM\ORM_DEV\obj\Debug\ORM_DEV.csproj.CoreCompileInputs.cache
 C:\dev\AruOnline\ORM\ORM_DEV\obj\Debug\ORM_DEV.csproj.CopyComplete
 C:\dev\AruOnline\ORM\ORM_DEV\obj\Debug\ORM_DEV.exe
 C:\dev\AruOnline\ORM\ORM_DEV\obj\Debug\ORM_DEV.pdb
+C:\Projekte\ORM_DEV\ORM_DEV\bin\Debug\IdGen.dll
+C:\Projekte\ORM_DEV\ORM_DEV\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Projekte\ORM_DEV\ORM_DEV\bin\Debug\IdGen.xml
+C:\Projekte\ORM_DEV\ORM_DEV\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Projekte\ORM_DEV\ORM_DEV\bin\Debug\Humanizer.dll
+C:\Projekte\ORM_DEV\ORM_DEV\bin\Debug\SqlKata.dll
+C:\Projekte\ORM_DEV\ORM_DEV\bin\Debug\SqlKata.Execution.dll
+C:\Projekte\ORM_DEV\ORM_DEV\bin\Debug\Humanizer.xml

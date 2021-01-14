@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MySql.Data.MySqlClient;
 using ORM_DEV.Entities;
+using ORM_DEV.Framework.Cache;
 
 namespace ORM_DEV
 {
@@ -10,19 +10,17 @@ namespace ORM_DEV
         
         public static void Main(string[] args)
         {
-            EntityManager.Initialize(CONN_STRING);
+            //EntityManager.Initialize(CONN_STRING);
+            Cache.Initialize(new MySqlConnection(CONN_STRING));
 
-            /*foreach (User user in User.FindAll())
+            User user1 = User.Get(u => u.Id == 1);
+            user1.Name = "HELLO!2222222222";
+            
+            
+            User user2 = new User
             {
-                Console.WriteLine(user.Id);
-                Console.WriteLine(user.Name);
-            }
-
-            User user2 = User.Find(e => e.Id == 3);
-            Console.WriteLine(user2?.Delete());
-            */
-
-            User.Get(u => u.Id == 1);
+                Name = "Test"
+            };
         }
     }
 }
