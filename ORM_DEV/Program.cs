@@ -13,14 +13,11 @@ namespace ORM_DEV
             //EntityManager.Initialize(CONN_STRING);
             Cache.Initialize(new MySqlConnection(CONN_STRING));
 
-            User user1 = User.Get(u => u.Id == 1);
+            User user1 = User.Get(1);
             user1.Name = "HELLO!2222222222";
-            
-            
-            User user2 = new User
-            {
-                Name = "Test"
-            };
+
+            Player p1 = new Player { Name = "P1" };
+            user1.P1 = p1.Id;
         }
     }
 }

@@ -226,9 +226,10 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Framework\Attributes\NotMappedAttribute.cs" />
         <Compile Include="Framework\Attributes\TableAttribute.cs" />
         <Compile Include="Framework\Cache\Cache.cs" />
-        <Compile Include="Framework\Cache\CacheHelper.cs" />
+        <Compile Include="Framework\Cache\Helper.cs" />
         <Compile Include="Framework\Cache\Sql.cs" />
         <Compile Include="Framework\Entities\Entity.cs" />
         <Compile Include="Framework\Entities\EntityBase.cs" />

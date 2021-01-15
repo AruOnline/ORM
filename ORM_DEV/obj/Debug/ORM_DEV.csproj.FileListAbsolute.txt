@@ -76,3 +76,11 @@ C:\Projekte\ORM_DEV\ORM_DEV\bin\Debug\Humanizer.dll
 C:\Projekte\ORM_DEV\ORM_DEV\bin\Debug\SqlKata.dll
 C:\Projekte\ORM_DEV\ORM_DEV\bin\Debug\SqlKata.Execution.dll
 C:\Projekte\ORM_DEV\ORM_DEV\bin\Debug\Humanizer.xml
+C:\dev\AruOnline\ORM\ORM_DEV\bin\Debug\Humanizer.dll
+C:\dev\AruOnline\ORM\ORM_DEV\bin\Debug\IdGen.dll
+C:\dev\AruOnline\ORM\ORM_DEV\bin\Debug\SqlKata.dll
+C:\dev\AruOnline\ORM\ORM_DEV\bin\Debug\SqlKata.Execution.dll
+C:\dev\AruOnline\ORM\ORM_DEV\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\dev\AruOnline\ORM\ORM_DEV\bin\Debug\Humanizer.xml
+C:\dev\AruOnline\ORM\ORM_DEV\bin\Debug\IdGen.xml
+C:\dev\AruOnline\ORM\ORM_DEV\bin\Debug\System.Diagnostics.DiagnosticSource.xml

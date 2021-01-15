@@ -10,9 +10,9 @@ namespace ORM_DEV.Framework.Entities
             Cache.Cache.Add<T>(this);
         }
         
-        public static T Get(Func<T, bool> filter = null)
+        public static T Get(long index)
         {
-            return Cache.Cache.Get<T>(e => e.Id == 1);
+            return Cache.Cache.Get<T>(e => e.Id == index);
         }
 
         public bool Delete()

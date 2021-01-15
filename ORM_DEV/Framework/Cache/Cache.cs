@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using IdGen;
+using ORM_DEV.Framework.Entities;
 
 namespace ORM_DEV.Framework.Cache
 {
@@ -15,7 +16,7 @@ namespace ORM_DEV.Framework.Cache
         private static Thread _main;
 
         private static readonly Dictionary<Type, List<EntityBase>> DB_CACHE = new Dictionary<Type, List<EntityBase>>();
-        private static readonly IdGenerator Generator = new IdGenerator(0);
+        private static readonly IdGenerator GENERATOR = new IdGenerator(0);
         
         /**
          * Internal methods
@@ -32,7 +33,7 @@ namespace ORM_DEV.Framework.Cache
 
         internal static long GenerateId()
         {
-            return Generator.CreateId();
+            return GENERATOR.CreateId();
         }
         
         internal static void Add<T>(EntityBase entity)
@@ -40,15 +41,15 @@ namespace ORM_DEV.Framework.Cache
             lock (DB_CACHE)
             {
                 // Add list for that type if it doesnt exist already
-                if (!DB_CACHE.ContainsKey(entity.GetType()))
+                if (!DB_CACHE.ContainsKey(typeof(T)))
                 {
-                    DB_CACHE.Add(entity.GetType(), new List<EntityBase>());
+                    DB_CACHE.Add(typeof(T), new List<EntityBase>());
                 }
                 
                 // Add instance to type list
-                if (!DB_CACHE[entity.GetType()].Exists(e => e.Id == entity.Id))
+                if (!DB_CACHE[typeof(T)].Exists(e => e.Id == entity.Id))
                 {
-                    DB_CACHE[entity.GetType()].Add(entity);
+                    DB_CACHE[typeof(T)].Add(entity);
                 }
                 else
                 {
@@ -107,6 +108,7 @@ namespace ORM_DEV.Framework.Cache
                 if (entity.GetTableName().Contains("entity")) continue;
                 
                 Console.WriteLine($"Table {entity.GetTableName()} missing...");
+                entity.CreateTable();
             }
         }
 
@@ -120,12 +122,10 @@ namespace ORM_DEV.Framework.Cache
                     {
                         if (!Sql.Exists(entity))
                         {
-                            Console.WriteLine("Add to Database:");
                             Sql.Insert(entity);
                             continue;
                         }
                             
-                        Console.WriteLine("Update to Database");
                         Sql.Update(entity);
                     }
                 }

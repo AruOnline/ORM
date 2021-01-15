@@ -1,4 +1,6 @@
-﻿namespace ORM_DEV.Framework
+﻿using System;
+
+namespace ORM_DEV.Framework.Entities
 {
     /// <summary>
     /// EntityBase defines fields which are required by every Entity

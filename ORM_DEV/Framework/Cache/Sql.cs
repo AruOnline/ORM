@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection;
+using Dapper;
+using ORM_DEV.Framework.Entities;
 using SqlKata.Compilers;
 using SqlKata.Execution;
 
@@ -22,7 +26,8 @@ namespace ORM_DEV.Framework.Cache
         {
             return _database
                 .Query(entity.GetType().GetTableName())
-                .Update(entity);
+                .Where("Id", entity.Id)
+                .Update(entity.GetType().GetDbFields(entity));
         }
 
         internal static int Insert(EntityBase entity)
@@ -45,8 +50,7 @@ namespace ORM_DEV.Framework.Cache
         {
             return _database
                 .Query(typeof(T).GetTableName())
-                .Get<T>()
-                .FirstOrDefault();
+                .FirstOrDefault<T>();
         }
 
         internal static bool Exists(EntityBase entity)
@@ -54,13 +58,21 @@ namespace ORM_DEV.Framework.Cache
             return _database
                 .Query(entity.GetType().GetTableName())
                 .Where("Id", entity.Id)
-                .Get()
-                .Any();
+                .FirstOrDefault() != null;
         }
 
-        internal static void CreateTable<T>()
+        internal static void CreateTable(this Type type)
         {
-            //_database
+            //List<string> fieldDefinitions = new List<string>();
+            //foreach (PropertyInfo field in type.GetDbFields(false))
+            //{
+                //fieldDefinitions.Add($"`{field.Name}` {}");
+            //}
+            /*
+            _database.Connection.Execute($@"CREATE TABLE IF NOT EXISTS `{type.GetTableName()}` (
+                
+            )");
+            */
         }
     }
 }
