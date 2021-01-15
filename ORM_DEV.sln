@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORM_DEV", "ORM_DEV\ORM_DEV.csproj", "{1DEBF53D-E575-4F33-A9E4-B692A539A445}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORM_TEST", "ORM_TEST\ORM_TEST.csproj", "{3A5F954E-0B72-47FB-B84D-3E9DB96F0847}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{1DEBF53D-E575-4F33-A9E4-B692A539A445}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DEBF53D-E575-4F33-A9E4-B692A539A445}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DEBF53D-E575-4F33-A9E4-B692A539A445}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A5F954E-0B72-47FB-B84D-3E9DB96F0847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A5F954E-0B72-47FB-B84D-3E9DB96F0847}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A5F954E-0B72-47FB-B84D-3E9DB96F0847}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A5F954E-0B72-47FB-B84D-3E9DB96F0847}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

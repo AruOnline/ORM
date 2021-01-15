@@ -234,8 +234,6 @@
         <Compile Include="Framework\Entities\Entity.cs" />
         <Compile Include="Framework\Entities\EntityBase.cs" />
         <Compile Include="Entities\Player.cs" />
-        <Compile Include="Entities\Property.cs" />
-        <Compile Include="Entities\Tax.cs" />
         <Compile Include="Entities\User.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />

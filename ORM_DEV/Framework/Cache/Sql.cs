@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Dapper;
 using ORM_DEV.Framework.Entities;
+using SqlKata;
 using SqlKata.Compilers;
 using SqlKata.Execution;
 
@@ -48,6 +49,13 @@ namespace ORM_DEV.Framework.Cache
 
         internal static T Get<T>()
         {
+            Query query = _database.Query(typeof(T).GetTableName());
+            XQuery xQuery = query as XQuery;
+            Compiler compiler = xQuery?.Compiler;
+            IDbConnection connection = xQuery?.Connection;
+            SqlResult compiled = compiler?.Compile(query);
+            return connection.Query<T, T, T>(compiled?.Sql, (t, x) => t, param: compiled?.Bindings).First();
+            
             return _database
                 .Query(typeof(T).GetTableName())
                 .FirstOrDefault<T>();

@@ -5,15 +5,11 @@ using ORM_DEV.Framework.Entities;
 
 namespace ORM_DEV.Entities
 {
-    [Table("users")]
+    [Table("user")]
     public class User : Entity<User>
     {
         public string Name { get; set; }
-
-        public Player CurrentPlayer;
-        public long P1 {
-            get => CurrentPlayer.Id;
-            set => CurrentPlayer = Player.Get(value);
-        }
+        
+        public Player P1 { get; set; }
     }
 }

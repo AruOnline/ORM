@@ -17,7 +17,7 @@ namespace ORM_DEV
             user1.Name = "HELLO!2222222222";
 
             Player p1 = new Player { Name = "P1" };
-            user1.P1 = p1.Id;
+            //user1.P1 = p1;
         }
     }
 }
