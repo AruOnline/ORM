@@ -1,4 +1,4 @@
-﻿using ORM_TEST.Framework;
+﻿using DBCache;
 
 namespace ORM_TEST.Entities
 {

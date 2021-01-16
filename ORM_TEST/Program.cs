@@ -1,11 +1,8 @@
-﻿using FluentNHibernate.Automapping;
-using FluentNHibernate.Cfg;
+﻿using System;
+using System.Threading;
+using DBCache;
 using FluentNHibernate.Cfg.Db;
-using NHibernate;
-using NHibernate.Cfg;
-using NHibernate.Tool.hbm2ddl;
 using ORM_TEST.Entities;
-using ORM_TEST.Framework;
 
 namespace ORM_TEST
 {
@@ -15,38 +12,20 @@ namespace ORM_TEST
         
         public static void Main(string[] args)
         {
-            ISessionFactory sessionFactory = CreateSessionFactory();
-            using (ISession session = sessionFactory.OpenSession())
-            {
-                using (ITransaction transaction = session.BeginTransaction())
-                {
-                    User user = new User {Name = "Bob"};
-                    Player p1 = new Player {Name = "P1", Owner = user};
-                    Player p2 = new Player {Name = "P2", Owner = user};
-                    user.ActivePlayer = p1;
-                    
-                    session.SaveOrUpdate(user);
-                    session.SaveOrUpdate(p1);
-                    session.SaveOrUpdate(p2);
-                    
-                    transaction.Commit();
-                }
-            }
-        }
+            Cache.Initialize(MySQLConfiguration.Standard.ConnectionString(CONN_STRING).ShowSql());
+            
+            User user = new User {Name = "Bob"};
+            Player p1 = new Player {Name = "Bill"};
+            user.ActivePlayer = p1;
 
-        private static ISessionFactory CreateSessionFactory()
-        {
-            return Fluently
-                .Configure()
-                .Database(MySQLConfiguration.Standard.ConnectionString(CONN_STRING))
-                .Mappings(m => m.AutoMappings.Add(AutoMap.AssemblyOf<User>(new MapConfig())))
-                .ExposeConfiguration(BuildSchema)
-                .BuildSessionFactory();
-        }
-
-        private static void BuildSchema(Configuration config)
-        {
-            new SchemaExport(config).Create(true, true);
+            User x = Entity.Get<User>(e => e.ActivePlayer == p1);
+            Console.WriteLine(x.Id == user.Id);
+            
+            Thread.Sleep(8000);
+            
+            x.Delete();
+            
+            Console.WriteLine(user);
         }
     }
 }
