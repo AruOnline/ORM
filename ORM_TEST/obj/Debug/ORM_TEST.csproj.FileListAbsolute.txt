@@ -96,3 +96,9 @@ C:\dev\AruOnline\ORM\ORM_TEST\bin\Debug\IdGen.xml
 C:\dev\AruOnline\ORM\ORM_TEST\bin\Debug\System.Diagnostics.DiagnosticSource.xml
 C:\dev\AruOnline\ORM\ORM_TEST\bin\Debug\DBCache.dll
 C:\dev\AruOnline\ORM\ORM_TEST\bin\Debug\DBCache.pdb
+C:\Projekte\ORM_DEV\ORM_TEST\bin\Debug\DBCache.dll
+C:\Projekte\ORM_DEV\ORM_TEST\bin\Debug\IdGen.dll
+C:\Projekte\ORM_DEV\ORM_TEST\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Projekte\ORM_DEV\ORM_TEST\bin\Debug\DBCache.pdb
+C:\Projekte\ORM_DEV\ORM_TEST\bin\Debug\IdGen.xml
+C:\Projekte\ORM_DEV\ORM_TEST\bin\Debug\System.Diagnostics.DiagnosticSource.xml

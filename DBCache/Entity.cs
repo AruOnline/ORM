@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DBCache
 {
@@ -16,6 +17,11 @@ namespace DBCache
         public static T Get<T>(Func<T, bool> filter) where T : Entity
         {
             return Cache.Get(filter);
+        }
+
+        public static IEnumerable<T> GetAll<T>(Func<T, bool> filter = null) where T : Entity
+        {
+            return Cache.GetAll(filter);
         }
 
         public virtual void Delete()

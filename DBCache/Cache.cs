@@ -16,13 +16,15 @@ namespace DBCache
     {
         private static ISessionFactory _sessionFactory;
         private static bool _isRunning = true;
+        private static int _interactionInterval;
         
         private static readonly IdGenerator GENERATOR = new IdGenerator(0);
         private static readonly Dictionary<Type, List<Entity>> DB_CACHE = new Dictionary<Type, List<Entity>>();
         
-        public static void Initialize(IPersistenceConfigurer dbConfig)
+        public static void Initialize(IPersistenceConfigurer dbConfig, int interactionInterval = 30000)
         {
             _sessionFactory = CreateSessionFactory(dbConfig);
+            _interactionInterval = interactionInterval;
             
             Thread cache = new Thread(Execute) {Name = "Cache"};
             cache.Start();
@@ -47,6 +49,30 @@ namespace DBCache
             {
                 return session.Query<T>().FirstOrDefault(filter);
             }
+        }
+
+        internal static List<T> GetAll<T>(Func<T, bool> filter = null) where T : Entity
+        {
+            List<T> resultSet = new List<T>();
+            
+            lock (DB_CACHE)
+            {
+                if (DB_CACHE.ContainsKey(typeof(T)))
+                {
+                    resultSet.AddRange(filter != null
+                        ? DB_CACHE[typeof(T)].Cast<T>().Where(filter)
+                        : DB_CACHE[typeof(T)].Cast<T>());
+                }
+            }
+
+            using (ISession session = _sessionFactory.OpenSession())
+            {
+                resultSet.AddRange(filter != null
+                    ? session.Query<T>().AsEnumerable().Where(filter)
+                    : session.Query<T>().AsEnumerable());
+            }
+
+            return resultSet;
         }
 
         internal static void Delete(Entity entity)
@@ -98,7 +124,7 @@ namespace DBCache
         {
             while (_isRunning)
             {
-                Thread.Sleep(5000);
+                Thread.Sleep(_interactionInterval);
                 DispatchChanges();
             }
         }
@@ -130,15 +156,12 @@ namespace DBCache
                     }
                 }
             }
-            Console.WriteLine("Triggered!!");
         }
         
         private static ISessionFactory CreateSessionFactory(IPersistenceConfigurer dbConfig)
         {
             AutoPersistenceModel autoMapping = AutoMap
                 .Assembly(Assembly.GetEntryAssembly(), new MapConfig());
-                //.Override<User>(u => u.Id(i => i.Id).GeneratedBy.Assigned())
-                //.Override<Player>(u => u.Id(i => i.Id).GeneratedBy.Assigned());
             
             return Fluently
                 .Configure()
