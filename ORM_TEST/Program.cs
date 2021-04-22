@@ -9,7 +9,7 @@ namespace ORM_TEST
 {
     internal static class Program
     {
-        private const string CONN_STRING = "Server=127.0.0.1;Database=game;Uid=game;Pwd=Ferrarie1!;";
+        private const string CONN_STRING = "Server=127.0.0.1;Database=game;Uid=game;Pwd=somepwd;";
         
         public static void Main(string[] args)
         {
